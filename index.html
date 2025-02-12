@@ -1,0 +1,196 @@
+<h1>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asesorías Profesionales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        
+        header {
+            background-color: #0073e6;
+            color: white;
+            padding: 20px;
+        }
+        
+        #banner {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-group {
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #0073e6;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        #infoUsuario {
+            margin-top: 20px;
+            font-size: 1.1em;
+            padding: 15px;
+            border-radius: 10px;
+            background: #e6f2ff;
+            display: none;
+        }
+
+        img {
+            max-width: 200px;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado con imagen -->
+    <header>
+        <h1>Bienvenido a nuestras Asesorías Profesionales</h1>
+        <p>Obtén ayuda personalizada en diversas áreas.</p>
+    </header>
+
+    <!-- Imagen representativa del servicio -->
+    <img id="banner" src="https://www.unitec.mx/hs-fs/hubfs/Imported_Blog_Media/quiero-estudiar-pero-no-tengo-dinero-que-hago-1-Dec-17-2022-06-16-10-0632-PM.jpg?width=2000&height=1333&name=quiero-estudiar-pero-no-tengo-dinero-que-hago-1-Dec-17-2022-06-16-10-0632-PM.jpg" alt="Asesoría Profesional"> <!-- Reemplaza 'asesoria.jpg' con tu imagen -->
+
+    <div class="container">
+        <h2>Solicita tu Asesoría</h2>
+
+        <!-- Formulario de información -->
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre">
+        </div>
+
+        <div class="form-group">
+            <label for="pais">País:</label>
+            <select id="pais">
+                <option value="México">México</option>
+                <option value="España">España</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Chile">Chile</option>
+                <option value="Perú">Perú</option>
+                <option value="Otro">Otro</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="fechaNacimiento">Fecha de nacimiento:</label>
+            <input type="date" id="fechaNacimiento">
+        </div>
+
+        <div class="form-group">
+            <label>Estado civil:</label><br>
+            <input type="radio" name="estadoCivil" value="Soltero"> Soltero
+            <input type="radio" name="estadoCivil" value="Casado"> Casado
+            <input type="radio" name="estadoCivil" value="Divorciado"> Divorciado
+            <input type="radio" name="estadoCivil" value="Viudo"> Viudo
+        </div>
+
+        <div class="form-group">
+            <label for="carrera">Carrera Profesional:</label>
+            <select id="carrera">
+                <option value="Ingeniería">Ingeniería</option>
+                <option value="Medicina">Medicina</option>
+                <option value="Derecho">Derecho</option>
+                <option value="Arquitectura">Arquitectura</option>
+                <option value="Administración">Administración</option>
+                <option value="Otro">Otro</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="trabajo">Ocupación:</label>
+            <input type="text" id="trabajo" placeholder="Ejemplo: Profesor, Ingeniero, Diseñador...">
+        </div>
+
+        <button onclick="mostrarInfo()">Solicitar Asesoría</button>
+
+        <!-- Sección para mostrar información -->
+        <div id="infoUsuario"></div>
+    </div>
+
+    <script>
+        function mostrarInfo() {
+            let nombre = document.getElementById("nombre").value.trim();
+            let pais = document.getElementById("pais").value;
+            let fechaNacimiento = document.getElementById("fechaNacimiento").value;
+            let carrera = document.getElementById("carrera").value;
+            let trabajo = document.getElementById("trabajo").value.trim();
+
+            let estadoCivil = "";
+            let radios = document.getElementsByName("estadoCivil");
+            for (let i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    estadoCivil = radios[i].value;
+                    break;
+                }
+            }
+
+            if (nombre === "" || fechaNacimiento === "" || trabajo === "") {
+                alert("Por favor, completa todos los campos.");
+                return;
+            }
+
+            let mensaje = `<h3>Información enviada:</h3>
+                <p>👤 Nombre: <b>${nombre}</b></p>
+                <p>🌍 País: <b>${pais}</b></p>
+                <p>🎂 Fecha de nacimiento: <b>${fechaNacimiento}</b></p>
+                <p>💍 Estado civil: <b>${estadoCivil}</b></p>
+                <p>📚 Carrera profesional: <b>${carrera}</b></p>
+                <p>💼 Trabajo: <b>${trabajo}</b></p>
+                <p>📩 Nos pondremos en contacto contigo pronto.</p>`;
+
+            document.getElementById("infoUsuario").innerHTML = mensaje;
+            document.getElementById("infoUsuario").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
+
+</h1>
